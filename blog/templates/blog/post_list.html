@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+    {% block title_block %}
+    
+        Sachin Blog 
+    {% endblock title_block %}
+
+    {% block body_content %}
+        <h1> Pythons Blog <h1>
+        {% for post in post_list %}
+            {{post.title}}
+        {% endfor %}
+    {% endblock body_content %}
