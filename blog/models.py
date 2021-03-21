@@ -5,6 +5,10 @@ from django.urls import reverse
 
 
 # Create your models here.
+class CustomManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status='published')
+
 
 class Post(models.Model):
     STATUS_CHOICES = (('draft', 'Draft'), ('published', 'Published'))
@@ -16,7 +20,9 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    objects = CustomManager()
 
+    
     class Meta:
         ordering = ('-publish',)
 
