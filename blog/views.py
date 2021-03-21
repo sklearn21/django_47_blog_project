@@ -14,9 +14,9 @@ def post_detail_view(request,year,month,day,post):
         Post, 
         slug=post, 
         status='published', 
-        publish_year=year, 
-        publish_month=month, 
-        publish_day=day
+        publish__year=year, 
+        publish__month=month, 
+        publish__day=day
         )
 
     return render(request, 'blog/post_detail.html', {'post':post})
