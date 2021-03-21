@@ -18,6 +18,13 @@ def post_list_view(request):
     return render(request, 'blog/post_list.html', {'post_list': post_list})
 
 
+from django.views.generic import ListView
+
+class Post_List_View(ListView):
+    model= Post
+    paginate_by=1
+
+
 def post_detail_view(request, year, month, day, post):
     post = get_object_or_404(
         Post,
