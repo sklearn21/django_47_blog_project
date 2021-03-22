@@ -11,4 +11,7 @@
         </p>
 
         {{post.body|linebreaks}}
+        <br><br>
+
+        <a href='/{{post.id}}/share' class='btn btn-lg btn-success' target="_blank"> Share Post By Email</a>
     {% endblock body_content %}

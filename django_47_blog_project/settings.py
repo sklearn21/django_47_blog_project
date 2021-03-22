@@ -1,3 +1,5 @@
+from blog import details
+
 """
 Django settings for django_47_blog_project project.
 
@@ -114,3 +116,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_FILES = [BASE_DIR / "static"]
+
+
+#smtp mail configuration for gmail
+# EMAIL_BACKEND='django.core.mailbackends.smtp.EmailBackend'
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_HOST_USER= enter_your_email_id
+EMAIL_HOST_PASSWORD=enter_your_password
+EMAIL_USE_TLS= True

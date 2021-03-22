@@ -33,3 +33,12 @@ body{
     font-style: italic;
     font-size: 12px;
 } 
+
+a{
+    color: yellow;
+}
+
+input[type='text']{
+    background: blue;
+    color: wheat;
+}
