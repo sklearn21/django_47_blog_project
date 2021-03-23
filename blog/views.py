@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.mail import send_mail
-from blog.forms import EmailSendForm
+from blog.forms import EmailSendForm, CommentsForm
 # Create your views here.
 
 
@@ -36,7 +36,21 @@ def post_detail_view(request, year, month, day, post):
         publish__day=day
     )
 
-    return render(request, 'blog/post_detail.html', {'post': post})
+    comments = post.comments.filter(active=True)
+    cssubmit=False
+    if request.method=='POST':
+        form=CommentsForm(request.POST)
+        if form.is_valid():
+            new_comment=form.save(commit=False)
+            new_comment.post=post
+            new_comment.save()
+            cssubmit=True
+    else:
+        form=CommentsForm()
+
+
+    # return render(request,'blog/post_detail.html', {'post': post, 'form':form, 'cssubmit':cssubmit, 'comments': comments}),
+    return render(request,'blog/post_detail.html',{'post':post,'form':form,'comments':comments,'cssubmit':cssubmit})    
 
 
 def mail_send_view(request, id):
