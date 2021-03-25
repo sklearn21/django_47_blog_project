@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load blog_tags %}
 {% load static %}
 <html lang='en' dir='ltr'>
     <head>
@@ -24,12 +25,22 @@
         </div>
         <div class='sidebar'>
             <h2>Editors Special</h2>
-            <p>Here you can see updations....</p>
+            <p>Total number of posts published until today : <span id='pcount'> {% my_tag %}</span></p>
         </div>
         <div class='sidebar'>
 
-            <h2>Learns Blog</h2>
-            <p>Here you will get latest updates.</p>
+            <h2>Latest Posts</h2>{%show_latest_posts 4%}
+            <h2>Most Commented Posts:</h2>
+            {% get_most_commented_posts as most_commented_posts %}
+            <ul>
+                {% for post in most_commented_posts %}
+                    <li>
+                        <a href="{{post.get_absolute_url}}">
+                            {{post.title}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </body>
 </html>
